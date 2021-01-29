@@ -21,10 +21,17 @@ function partitionBooksByBorrowedStatus(books) {
   return[falseResult, trueResult];
    
 }
-
+/*
+let borrArray = [...book.borrows];
+  borrArray.forEach((element, index) => {
+    let account = findAccountById(accounts, element.id);
+    borrArray[index] = {...element, ...account};
+  });
+*/
+// changed below code to use .map, above code was my original
 function getBorrowersForBook(book, accounts) {
   let borrArray = [...book.borrows];
-  borrArray.forEach((element, index) => {
+  borrArray.map((element, index) => {
     let account = findAccountById(accounts, element.id);
     borrArray[index] = {...element, ...account};
   });

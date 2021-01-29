@@ -20,12 +20,10 @@ function getMostCommonGenres(books) {
     : (myObj[genre] = {name: genre, count: 1});
   });
   
-  Object.keys(myObj).forEach((element) => { 
-    objArr.push(myObj[element]);
-  });
-  
+  objArr = arrayCreator(myObj, objArr);
+
   let result = objArr.sort((a, b) => b.count - a.count); 
-  console.log(result)
+  //console.log(result)
   return result.splice(0,5);
   
   
@@ -56,9 +54,8 @@ function getMostPopularAuthors(books, authors) {
     : (myObj[author] = {count: borrows.length, name: author})
   });
   
-  Object.keys(myObj).forEach((element) => { 
-    objArr.push(myObj[element]);
-  });
+  
+  objArr = arrayCreator(myObj, objArr);
   
   const result = objArr.sort((a, b) => b.count - a.count); 
   
@@ -67,6 +64,13 @@ function getMostPopularAuthors(books, authors) {
   return result.splice(0,5)
 }
 
+//helper function
+function arrayCreator(myObj, objArr){
+  Object.keys(myObj).forEach((element) => { 
+    objArr.push(myObj[element]);
+  });
+  return objArr;
+}
 
 //copy & pasting functions due to the require statements being broken.
 function partitionBooksByBorrowedStatus(books) {
